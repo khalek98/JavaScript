@@ -1,11 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/JavaScript
+Projects/node_modules
+Projects/JavaScript
 /.pnp
-db-1647978750005.json
-css/styleSsssS.css
+Projects/db-1647978750005.json
+Projects/css/styleSsssS.css
 
 # testing
 /coverage
