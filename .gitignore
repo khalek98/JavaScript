@@ -1,11 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-JS/node_modules
-JS/JavaScript
+Project_Food/node_modules
 /.pnp
-JS/db-1647978750005.json
-JS/css/styleSsssS.css
+
 
 # testing
 /coverage
