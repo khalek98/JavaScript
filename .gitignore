@@ -3,7 +3,7 @@
 # dependencies
 Project_Food/node_modules
 /.pnp
-
+/.git
 
 # testing
 /coverage
