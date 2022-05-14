@@ -14,18 +14,17 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display
                     node.classList.remove(activeClass);
                 } 
             })
-            // tab.classList.remove(activeClass);
         });
     }
 
     function showTabContent(i = 0) {
-        contents[i].style.display = display;
+        contents[i].style.display = 'block';
+        
         tabs[i].childNodes.forEach(node => {
             if (node.nodeName === 'A') {
                 node.classList.add(activeClass);
             } 
         })
-        // .classList.add(activeClass);
     }
 
     hideTabContent();
