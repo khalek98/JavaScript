@@ -279,11 +279,15 @@ const slider = () => {
     dotsArr.push(dot);
   }
 
+  function keepNum(str) {
+    return +str.replace(/\D/g, '');
+  }
+
   next.addEventListener('click', () => {
-    if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+    if (offset == keepNum(width) * (slides.length - 1)) {
       offset = 0;
     } else {
-      offset += +width.slice(0, width.length - 2);
+      offset += keepNum(width);
     }
 
     if (slideIndex == slides.length) {
@@ -298,9 +302,9 @@ const slider = () => {
   });
   prev.addEventListener('click', () => {
     if (offset == 0) {
-      offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+      offset = keepNum(width) * (slides.length - 1);
     } else {
-      offset -= +width.slice(0, width.length - 2);
+      offset -= keepNum(width);
     }
 
     if (slideIndex == 1) {
@@ -317,7 +321,7 @@ const slider = () => {
     dot.addEventListener('click', e => {
       const slideTo = e.target.getAttribute('data-slide-to');
       slideIndex = slideTo;
-      offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+      offset = keepNum(width) * (slideTo - 1);
       counterWithZero(slideIndex, current);
       activeDot();
       sliderInner.style.transform = `translateX(-${offset}px)`;
@@ -385,7 +389,7 @@ const tabs = (tabsSelector, contentsSelector, parentSelector) => {
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-const timer = (setDeadline, selector) => {
+const timerClock = (setDeadline, selector) => {
   const deadline = setDeadline,
         timer = document.querySelector(selector);
 
@@ -449,7 +453,7 @@ const timer = (setDeadline, selector) => {
   setClock(deadline);
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (timer);
+/* harmony default export */ __webpack_exports__["default"] = (timerClock);
 
 /***/ })
 

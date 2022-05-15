@@ -1,8 +1,7 @@
-const timer = (setDeadline, selector) => {
+const timerClock = (setDeadline, selector) => {
 
     const deadline = setDeadline,
           timer = document.querySelector(selector);
-              
 
     function getTimeRemaining(endtime) {
         let days, hours, minutes, seconds;
@@ -71,6 +70,6 @@ const timer = (setDeadline, selector) => {
     setClock(deadline);
 };
 
-export default timer;
+export default timerClock;
 
 
