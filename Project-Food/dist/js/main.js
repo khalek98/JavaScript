@@ -4,6 +4,7 @@ import modal from './modules/modal';
 import cards from './modules/cards';
 // import form from './modules/form';
 import slider from './modules/slider';
+import calc from './modules/calc';
 
 window.addEventListener('DOMContentLoaded', () => {
     tabs('.tabheader__item ', '.tabcontent', '.tabheader__items');
@@ -12,4 +13,5 @@ window.addEventListener('DOMContentLoaded', () => {
     cards();
     // form();
     slider();
+    calc();
 });

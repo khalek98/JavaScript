@@ -37,7 +37,7 @@ const modal = () => {
     closeModalByEvent(modalWindow, 'click');
     closeModalByEvent(document, 'keydown');  
 
-    const modalTimerId = setTimeout(openModal, 60000);
+    const modalTimerId = setTimeout(openModal, 600000);
 
     function showModalByScroll() {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
