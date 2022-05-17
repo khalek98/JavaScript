@@ -1,108 +1,76 @@
-// const form = () => {
-//     const formsAll = document.querySelectorAll('form');
+import { openModal, closeModal } from "./modal";
+import { postData } from "../services/services";
 
-//     const message = {
-//         success: 'Спасибо! Скоро мы с Вами свяжемся!',
-//         failure: 'Что-то пошло не так...'
-//     }
+const form = (formSelector, modalTimerId) => {
+    const formsAll = document.querySelectorAll(formSelector);
 
-//     formsAll.forEach(item => {
-//         postData(item);
-//     });
+    const message = {
+        success: 'Thank you! <br> We will contact you soon.',
+        failure: 'Something went wrong...'
+    }
 
-//     function postData(form) {
-//         form.addEventListener('submit', (e) => {
-//             e.preventDefault();
+    formsAll.forEach(form => bindPostData(form));
 
-//             const progressBar = document.createElement('div'),
-//                   prorgessSub = document.createElement('div'),
-//                   statusMessage = document.createElement('div');
+    function bindPostData(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-//             progressBar.classList.add('progress-bar');
-//             prorgessSub.classList.add('progress-sub');
-//             statusMessage.classList.add('status');
+            const progressBar = document.createElement('div'),
+                  progressSub = document.createElement('div'),
+                  statusMessage = document.createElement('div');
 
-//             progressBar.append(prorgessSub);
-//             // form.append(progressBar);
-//             form.insertAdjacentElement('afterend', progressBar);
+            progressBar.classList.add('progress-bar');
+            progressSub.classList.add('progress-sub');
+            statusMessage.classList.add('status');
 
-//             const formData = new FormData(form);
-            
-//             // const object = {};
-//             // formData.forEach((value, key) => {
-//             //     object[key] = value;
-//             // });
-//             // console.log(object);
+            progressBar.append(progressSub);
+            form.insertAdjacentElement('afterend', progressBar);
 
-//             fetch('server.php', {
-//                 method: 'POST',
-//                 // headers: {
-//                 //     'Content-type': 'application/json'
-//                 // },
-//                 body: formData
-//             }).then(data => {
-//                 console.log(data);
-//                 progressBar.remove();
-//                 showThanksModal(message.success);
-//                 form.reset();
-//             }).catch(() => {
-//                 progressBar.remove();
-//                 showThanksModal(message.failure);
-//                 statusMessage.textContent = message.failure;
-//                 form.append(statusMessage);
-//                 setTimeout(() => {
-//                     statusMessage.remove();
-//                 }, 5000);
-//             }).finally(() => {
-//                 form.reset();
-//             })
+            const formData = new FormData(form);
 
+            const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
+            postData('http://localhost:3000/requests', json)
+                .then(data => {
+                    console.log(data);
+                    progressBar.remove();
+                    showThanksModal(message.success);
+                })
+                .catch(() => {
+                    progressBar.remove();
+                    showThanksModal(message.failure);
+                })
+                .finally(() => {
+                    form.reset();
+                });
+        });
 
-//             // request.addEventListener('load', () => {
-//             //     if (request.status === 200) {
-//             //         console.log(request.response);
-//             //         progressBar.remove();
-//             //         showThanksModal(message.success);
-//             //         form.reset();
-                    
-//             //     } else {
-//             //         progressBar.remove();
-//             //         showThanksModal(message.failure);
-//             //         // statusMessage.textContent = message.failure;
-//             //         // form.append(statusMessage);
-//             //         // setTimeout(() => {
-//             //         //     statusMessage.remove();
-//             //         // }, 5000);
-//             //     }
-//             // });
-//         });
-//     }
+        function showThanksModal(message) {
+            const modalDialog = document.querySelector('.modal__dialog');
+            modalDialog.classList.add('hide');
+            openModal('.modal', modalTimerId);
 
-//     function showThanksModal(message) {
-//         const modalDialog = document.querySelector('.modal__dialog');
-//         modalDialog.classList.add('hide');
-//         // openModal: 
+            const thanksModal = document.createElement('div');
+            thanksModal.classList.add('modal__dialog', 'show')
+            thanksModal.innerHTML = `
+                <div class="modal__content">
+                    <div data-close-modal class="modal__close">&times;</div>
+                    <div class="modal__title">${message}</div>
+                </div>
+            `;
 
-//         ///////////////////////////////////////////////////
+            document.querySelector('.modal').append(thanksModal);
 
-//         const thanksModal = document.createElement('div');
-//         thanksModal.classList.add('modal__dialog');
-//         thanksModal.innerHTML = `
-//             <div class="modal__content">
-//                 <div class=modal__close" data-close>х</div>
-//                 <div class="modal__title">${message}</div>
-//             </div>
-//         `;
-//         document.querySelector('.modal').append(thanksModal);
-//         setTimeout(() => {
-//            thanksModal.remove(); 
-//         }, 4000);
-//         modalDialog.classList.add('show');
-//         modalDialog.classList.remove('hide');
-//         closeModa();
-//     }
+            setTimeout(() => {
+                thanksModal.remove();
+                setTimeout(() => {
+                    modalDialog.classList.remove('hide');
+                    modalDialog.classList.add('show');
+                }, 1500);
+                closeModal('.modal');
+            }, 4000);
+        }
+    }
+}
 
-// };
-
-// export default form;
+export default form;

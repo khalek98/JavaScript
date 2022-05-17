@@ -1,12 +1,12 @@
-const slider = () => {
-    const mainSlider = document.querySelector('.offer__slider'),
-          prev = mainSlider.querySelector('.offer__slider-prev'),
-          next = mainSlider.querySelector('.offer__slider-next'),
-          current = mainSlider.querySelector('#current'),
-          total = mainSlider.querySelector('#total'),
-          sliderWrapper = mainSlider.querySelector('.offer__slider-wrapper'),
-          sliderInner = sliderWrapper.querySelector('.offer__slider-inner'),
-          slides = sliderInner.querySelectorAll('.offer__slide'),
+const slider = ({container, slide, nextArrow, prevArrow, totalCounern, currentCouner, wrapper, field}) => {
+    const mainSlider = document.querySelector(container),
+          prev = mainSlider.querySelector(prevArrow),
+          next = mainSlider.querySelector(nextArrow),
+          current = mainSlider.querySelector(currentCouner),
+          total = mainSlider.querySelector(totalCounern),
+          sliderWrapper = mainSlider.querySelector(wrapper),
+          sliderInner = sliderWrapper.querySelector(field),
+          slides = sliderInner.querySelectorAll(slide),
           width = window.getComputedStyle(sliderWrapper).width;
 
     function counterWithZero(amount, counter) {
