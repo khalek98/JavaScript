@@ -535,7 +535,13 @@ const timerClock = (setDeadline, selector) => {
       timer.style.display = 'block';
       timer.append(promotionEndedMessage);
       setTimeout(() => {
-        document.querySelector('.promotion').style.display = 'none';
+        // document.querySelector('.promotion').style.display = 'none';
+        document.querySelector('.promotion').style.cssText = `
+                    height: 0px;
+                    opacity: 0;
+                    padding: 0;
+                    transition: all 1s;
+                `;
         document.querySelector('.divider_before-prom').style.display = 'none';
       }, 5000);
     } else {

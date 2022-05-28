@@ -17,7 +17,6 @@ const timerClock = (setDeadline, selector) => {
             setTimeout(() => {
                 document.querySelector('.promotion').style.display = 'none';
                 document.querySelector('.divider_before-prom').style.display = 'none';
-
             }, 5000);
         } else {
             days = Math.floor(t / (1000 * 60 * 60 * 24)),
