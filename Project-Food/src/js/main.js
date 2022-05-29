@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const modalTimerId = setTimeout(() => openModal('.modal', modalTimerId), 600000);
 
     tabs('.tabheader__item', '.tabcontent', '.tabheader__items', 'tabheader__item_active');
-    timerClock('2022-05-25', '.timer');
+    timerClock('2022-09-25', '.timer');
     modal('.modal', '[data-modal]', modalTimerId);
     cards();
     form('form', modalTimerId);

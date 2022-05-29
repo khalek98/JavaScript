@@ -535,13 +535,7 @@ const timerClock = (setDeadline, selector) => {
       timer.style.display = 'block';
       timer.append(promotionEndedMessage);
       setTimeout(() => {
-        // document.querySelector('.promotion').style.display = 'none';
-        document.querySelector('.promotion').style.cssText = `
-                    height: 0px;
-                    opacity: 0;
-                    padding: 0;
-                    transition: all 1s;
-                `;
+        document.querySelector('.promotion').style.display = 'none';
         document.querySelector('.divider_before-prom').style.display = 'none';
       }, 5000);
     } else {
@@ -711,7 +705,7 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener('DOMContentLoaded', () => {
   const modalTimerId = setTimeout(() => (0,_modules_modal__WEBPACK_IMPORTED_MODULE_2__.openModal)('.modal', modalTimerId), 600000);
   (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__["default"])('.tabheader__item', '.tabcontent', '.tabheader__items', 'tabheader__item_active');
-  (0,_modules_timer__WEBPACK_IMPORTED_MODULE_1__["default"])('2022-05-25', '.timer');
+  (0,_modules_timer__WEBPACK_IMPORTED_MODULE_1__["default"])('2022-09-25', '.timer');
   (0,_modules_modal__WEBPACK_IMPORTED_MODULE_2__["default"])('.modal', '[data-modal]', modalTimerId);
   (0,_modules_cards__WEBPACK_IMPORTED_MODULE_3__["default"])();
   (0,_modules_form__WEBPACK_IMPORTED_MODULE_4__["default"])('form', modalTimerId);
